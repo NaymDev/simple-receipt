@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .receipt {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .receipt h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <h2>Receipt</h2>
+        <div id="items"></div>
+        <div class="total">
+            <span>Total</span>
+            <span id="total-price">$0.00</span>
+        </div>
+    </div>
+    <script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var url = window.location.href;
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)');
+            var results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+        function addItem(name, quantity, price) {
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'item';
+            itemContainer.innerHTML = `<span>${name} x ${quantity}</span><span>$${(quantity * price).toFixed(2)}</span>`;
+            document.getElementById('items').appendChild(itemContainer);
+            return quantity * price;
+        }
+
+        function addPercentageItem(name, percentage, baseTotal) {
+            const amount = (percentage / 100) * baseTotal;
+            const itemContainer = document.createElement('div');
+            itemContainer.className = 'item';
+            itemContainer.innerHTML = `<span>${name}</span><span>+$${amount.toFixed(2)}</span>`;
+            document.getElementById('items').appendChild(itemContainer);
+            return amount;
+        }
+
+        function calculateTotal() {
+            const items = document.querySelectorAll('.item span:last-child');
+            let total = 0;
+            items.forEach(item => {
+                total += parseFloat(item.textContent.replace('$', ''));
+            });
+            document.getElementById('total-price').textContent = `$${total.toFixed(2)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const itemsParam = getParameterByName('items');
+            let total = 0;
+
+            if (itemsParam) {
+                try {
+                    const items = JSON.parse(itemsParam);
+                    console.log(items);
+                    items.forEach(item => {
+                        if (item.length == 2) {
+                            const percentage = parseFloat(item[1].replace('%', ''));
+                            total += addPercentageItem(item[0], percentage, total);
+                        } if (item.length == 3) {
+                            total += addItem(item[0], item[1], item[2]);
+                        }
+                    });
+                } catch (e) {
+                    console.error('Error parsing items parameter:', e);
+                }
+            }
+
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>
