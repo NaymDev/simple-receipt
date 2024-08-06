@@ -15,7 +15,7 @@ In today’s world, managing receipts can be a hassle. This project aims to simp
 
 1. **Prepare Your Data**: Create your receipt data in the form of a JSON array. For example:
     ```json
-    [["members", 10, 0.2], ["Express", "10%"]]
+    [["Pencil", 10, 0.2], ["Express", "10%"]]
     ```
 
 2. **Encode the Data**: Convert the JSON array into a URL-encoded string. Here’s how you can do it in Python:
@@ -23,7 +23,7 @@ In today’s world, managing receipts can be a hassle. This project aims to simp
     import json
     import urllib.parse
 
-    items = [["members", 10, 0.2], ["Express", "10%"]]
+    items = [["Pencil", 10, 0.2], ["Express", "10%"]]
     json_string = json.dumps(items)
     encoded_items = urllib.parse.quote(json_string)
     print(f"?items={encoded_items}")
@@ -31,9 +31,9 @@ In today’s world, managing receipts can be a hassle. This project aims to simp
 
 3. **Access the Webpage**: Use the encoded data in the URL to access your receipt:
     ```
-   https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D
+   https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22Pencil%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D
     ```
-    [example](https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D)
+    [example](https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22Pencil%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D)
 
 ## ⚠️ Important Note
 
