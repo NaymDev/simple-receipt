@@ -34,8 +34,6 @@ In today’s world, managing receipts can be a hassle. This project aims to simp
    https://naymdev.github.io/simple-receipt/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D
     ```
 
-Replace `your-github-username` with your actual GitHub username.
-
 ## ⚠️ Important Note
 
 This tool is designed for convenience and visualization purposes only. **It is not secure** and should not be used for sensitive information or critical applications. The data is processed client-side and is visible in the URL, so avoid using it for private or sensitive receipts.
