@@ -31,8 +31,9 @@ In today’s world, managing receipts can be a hassle. This project aims to simp
 
 3. **Access the Webpage**: Use the encoded data in the URL to access your receipt:
     ```
-   https://naymdev.github.io/simple-receipt/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D
+   https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D
     ```
+    [example](https://naymdev.github.io/simple-receipt-viewer/?items=%5B%5B%22members%22%2C10%2C0.2%5D%2C%5B%22Express%22%2C%2210%25%22%5D%5D)
 
 ## ⚠️ Important Note
 
@@ -40,7 +41,7 @@ This tool is designed for convenience and visualization purposes only. **It is n
 
 ## 🌐 Live Demo
 
-You can try out the demo [here](https://naymdev.github.io/simple-receipt/). Just append your encoded receipt data to the URL to see it in action.
+You can try out the demo [here](https://naymdev.github.io/simple-receipt-viewer/). Just append your encoded receipt data to the URL to see it in action.
 
 ## 🧩 Customization
 
